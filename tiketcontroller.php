@@ -12,7 +12,7 @@ class TiketController {
 
     // 1. CREATE: Mengambil nama_event dari object
     public function tambah(tiket $obj) {
-        $query = "INSERT INTO tiket (nama_event) VALUES ('$obj->nama_event')";
+        $query = "INSERT INTO tiket (id_tiket,nama_event) VALUES ('$obj->id_tiket','$obj->nama_event')";
         return mysqli_query($this->db, $query);
     }
 
@@ -24,13 +24,13 @@ class TiketController {
 
     // 3. UPDATE: Mengupdate nama_event berdasarkan id_tiket dari object
     public function update(tiket $obj) {
-        $query = "UPDATE tiket SET nama_event = '$obj->nama_event' WHERE id = '$obj->id_tiket'";
+        $query = "UPDATE tiket SET nama_event = '$obj->nama_event' WHERE id_tiket = '$obj->id_tiket'";
         return mysqli_query($this->db, $query);
     }
 
     // 4. DELETE: Menghapus berdasarkan id_tiket dari object
     public function hapus(tiket $obj) {
-        $query = "DELETE FROM tiket WHERE id = '$obj->id_tiket'";
+        $query = "DELETE FROM tiket WHERE id_tiket = '$obj->id_tiket'";
         return mysqli_query($this->db, $query);
     }
 }

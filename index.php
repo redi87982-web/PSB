@@ -13,6 +13,7 @@ if (isset($_POST['aksi'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 
     if ($_POST['aksi'] == 'tambah') {
+        
         curl_setopt($ch, CURLOPT_URL, $api_url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -25,8 +26,11 @@ if (isset($_POST['aksi'])) {
     
     curl_exec($ch);
     curl_close($ch);
-    header("Location: index.php"); // Refresh halaman
+    echo "test1".$_POST['aksi'];
+    //header("Location: index.php"); // Refresh halaman
 }
+
+echo "test2";
 
 // --- LOGIKA HAPUS ---
 if (isset($_GET['hapus'])) {
@@ -35,7 +39,7 @@ if (isset($_GET['hapus'])) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_exec($ch);
     curl_close($ch);
-    header("Location: index.php");
+    //header("Location: index.php");
 }
 
 // --- AMBIL DATA DARI API (GET) ---
@@ -64,7 +68,7 @@ if (isset($_GET['edit'])) {
 
     <div class="card p-4 mb-4 shadow-sm">
         <form method="POST">
-            <input type="hidden" name="id_tiket" value="<?= $edit_id ?>">
+            <input type="text" name="id_tiket" value="<?= $edit_id ?>">
             <div class="row g-3">
                 <div class="col-md-8">
                     <input type="text" name="nama_event" class="form-control" placeholder="Nama Event" value="<?= $edit_nama ?>" required>
@@ -92,11 +96,11 @@ if (isset($_GET['edit'])) {
         <tbody>
             <?php foreach ($list_tiket as $tkt): ?>
             <tr>
-                <td><?= $tkt['id'] ?></td>
+                <td><?= $tkt['id_tiket'] ?></td>
                 <td><?= $tkt['nama_event'] ?></td>
                 <td>
-                    <a href="?edit=<?= $tkt['id'] ?>&nama=<?= $tkt['nama_event'] ?>" class="btn btn-sm btn-info">Edit</a>
-                    <a href="?hapus=<?= $tkt['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus?')">Hapus</a>
+                    <a href="?edit=<?= $tkt['id_tiket'] ?>&nama=<?= $tkt['nama_event'] ?>" class="btn btn-sm btn-info">Edit</a>
+                    <a href="?hapus=<?= $tkt['id_tiket'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus?')">Hapus</a>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -26,10 +26,12 @@ switch ($method) {
         // Menambah Data (Input JSON)
         $input = json_decode(file_get_contents("php://input"), true);
         if (isset($input['nama_event'])) {
+            $tkt->id_tiket = $input['id_tiket'];
             $tkt->nama_event = $input['nama_event'];
             if ($tiketCtrl->tambah($tkt)) {
                 echo json_encode(["message" => "Tiket berhasil ditambahkan"]);
             }
+            //echo json_encode(["message" => "Gagal menambahkan tiket"]);
         }
         break;
 
