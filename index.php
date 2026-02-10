@@ -12,11 +12,11 @@ if (isset($_POST['aksi'])) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 
-    if ($_POST['aksi'] == 'tambah') {
-        
+    if ($_POST['aksi'] == 'tambah') {        
         curl_setopt($ch, CURLOPT_URL, $api_url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        
     } 
     elseif ($_POST['aksi'] == 'update') {
         curl_setopt($ch, CURLOPT_URL, $api_url);
